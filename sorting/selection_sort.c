@@ -39,7 +39,7 @@ void selectionSort(int *arr, int size)
         }
         if (min_index != i)
         {
-            swap(arr + i, arr + min_index);
+            swap(&arr[i], &arr[min_index]);
         }
     }
 }
