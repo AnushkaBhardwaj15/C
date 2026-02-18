@@ -22,9 +22,12 @@ void swap(int *first, int *second)
 }
 
 /**
- * Selection sort algorithm implements
+ * Implements the Selection Sort algorithm.
+ * 
  * @param arr array to be sorted
- * @param size size of array
+ * @param n NUmber of elements in  the array
+ * Time Complexity:0(n^2) 
+ * Space Complexity: O(1)
  */
 void selectionSort(int *arr, int size)
 {
