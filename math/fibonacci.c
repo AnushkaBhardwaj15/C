@@ -28,7 +28,7 @@ unsigned int fib(int number)
     // Check for negative integers
     if (number <= 0)
     {
-        fprintf(stderr, "Illegal Argument Is Passed!\n");
+        fprintf(stderr, "Error: The number entered should be a positive integer (greater than 0)\n");
         exit(EXIT_FAILURE);
     }
 
@@ -49,31 +49,31 @@ unsigned int fib(int number)
  */
 int getInput(void)
 {
-    int num, excess_len;
-    char buffer[3], *endPtr;
+    int number, extra_characters;
+    char input_buffer[3], *end_ptr;
 
     while (1)
     {  // Repeat until a valid number is entered
         printf("Please enter a valid number:");
-        fgets(buffer, 3, stdin);  // Inputs the value from user
+        fgets(input_buffer, 3, stdin);  // Reads  atmost 2 characters  + null terminator to prevent overflow of number/characters
 
-        excess_len = 0;
-        if (!(buffer[0] == '\n' ||
-            buffer[1] == '\n' ||
-            buffer[2] == '\n')) {
-            while (getchar() != '\n') excess_len++;
+        extra_characters = 0;
+        if (!(input_buffer[0] == '\n' ||
+            input_buffer[1] == '\n' ||
+            input_buffer[2] == '\n')) {
+            while (getchar() != '\n') extra_characters++;
         }
 
-        num = strtol(buffer, &endPtr,
+        number = strtol(input_buffer, &end_ptr,
                      10);  // Attempts to convert the string to integer
 
         // Checking the input
         if (  // The number is too large
-            (excess_len > 0 || num > 48) ||
+            (extra_characters > 0 || number > 48) ||
             // Characters other than digits are included in the input
-            (*endPtr != '\0' && *endPtr != '\n') ||
+            (*end_ptr != '\0' && *end_ptr != '\n') ||
             // No characters are entered
-            endPtr == buffer)
+            end_ptr == input_buffer)
         {
             continue;
         }
@@ -81,8 +81,8 @@ int getInput(void)
         break;
     }
 
-    printf("\nEntered digit: %d (it might take sometime)\n", num);
-    return num;
+    printf("\nEntered digit: %d (it might take some time)\n", number);
+    return number;
 }
 
 /**
